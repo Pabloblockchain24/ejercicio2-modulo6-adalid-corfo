@@ -113,5 +113,5 @@ Estos breakpoints se aplican en las secciones necesarias, como el layout y los c
 
 ## Uso de lighthouse para verificar rendimiento offline
 
-![Rendimiento PWA en lighthouse ](/public/assets/imgs/lighthouse-offline.jpg)
+![Rendimiento PWA en lighthouse ](/public/assets/imgs/lighthouse.jpg)
 
