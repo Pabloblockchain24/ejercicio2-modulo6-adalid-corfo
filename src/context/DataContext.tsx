@@ -28,10 +28,15 @@ const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
         if (storedDoctors && JSON.parse(storedDoctors).length > 0) {
           setDoctors(JSON.parse(storedDoctors));
         } else {
-          const apiDoctors = await getDoctors();
-          if (apiDoctors.length > 0) {
-            setDoctors(apiDoctors);
-            localStorage.setItem("doctors", JSON.stringify(apiDoctors));
+          // const apiDoctors = await getDoctors();
+
+          const response = await fetch('/db.json');
+          const data = await response.json();
+          const localDoctors = data.doctores;
+
+          if (localDoctors.length > 0) {
+            setDoctors(localDoctors);
+            localStorage.setItem("doctors", JSON.stringify(localDoctors));
           }
         }
       } catch (error) {
@@ -45,8 +50,14 @@ const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     setLoadingServices(true);
     setErrorServices(null);
     try {
-      const servicios_medicos = await getServices();
-      setServices(servicios_medicos);
+      // const servicios_medicos = await getServices();
+
+      const response = await fetch('/db.json');
+      const data = await response.json();
+      const localServices = data.servicios_medicos;
+
+
+      setServices(localServices);
     } catch (error) {
       console.error("Error al cargar los servicios:", error);
       setErrorServices("Error al cargar los servicios. Por favor, intenta nuevamente.");
